@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{064EAFA0-C82D-42BF-9E83-8FACB5510745}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FishTank</RootNamespace>
+    <AssemblyName>FishyFish</AssemblyName>
+    <ApplicationIcon>Untitled.ico</ApplicationIcon>
+    <SignManifests>false</SignManifests>
+    <ManifestCertificateThumbprint>FE6DDEAE990F6C6639B1A64DCA4A3ED36C17A13C</ManifestCertificateThumbprint>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>dkackman.appx.pfx</AssemblyOriginatorKeyFile>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <GenerateManifests>false</GenerateManifests>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <TargetPlatformVersion>10.0</TargetPlatformVersion>
+    <HockeyAppResourceId>c498618cc50b4f35ae8513b4698ae097</HockeyAppResourceId>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.1.9</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>false</BootstrapperEnabled>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>FishTank.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>dkackman.appx.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.HockeyApp.Core45, Version=4.1.5.44947, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Microsoft.HockeyApp.Core45.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.HockeyApp.Kit, Version=4.1.5.44941, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Microsoft.HockeyApp.Kit.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="Windows">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Windows Kits\10\UnionMetadata\Windows.winmd</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Counter.cs" />
+    <Compile Include="Factory.cs" />
+    <Compile Include="FishAnimation.cs" />
+    <Compile Include="FishForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FishForm.Designer.cs">
+      <DependentUpon>FishForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoopingEnumerator.cs" />
+    <Compile Include="SafeGdiHandle.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UwpExtensions.cs" />
+    <EmbeddedResource Include="FishForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FishForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="dkackman.appx.pfx" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Settings.cs" />
+    <Compile Include="SysTrayFishForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SysTrayFishForm.Designer.cs">
+      <DependentUpon>SysTrayFishForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NativeMethods.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Orange\Left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Orange\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\app.manifest" />
+    <EmbeddedResource Include="Resources\Blue\Left.png" />
+    <EmbeddedResource Include="Resources\Blue\Right.png" />
+    <EmbeddedResource Include="Resources\Green\Left.png" />
+    <EmbeddedResource Include="Resources\Green\Right.png" />
+    <EmbeddedResource Include="Resources\Pink\Left.png" />
+    <EmbeddedResource Include="Resources\Pink\Right.png" />
+    <EmbeddedResource Include="Resources\Yellow\Left.png" />
+    <EmbeddedResource Include="Resources\Yellow\Right.png" />
+    <EmbeddedResource Include="Resources\Red\Left.png" />
+    <EmbeddedResource Include="Resources\Red\Right.png" />
+    <None Include="Resources\add.png" />
+    <None Include="Resources\cross.png" />
+    <None Include="Resources\star_yellow.png" />
+    <Content Include="Untitled.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\UwpDesktop.10.0.14393.3\analyzers\dotnet\UwpDesktopAnalyzer.dll" />
+  </ItemGroup>
+  <PropertyGroup>
+    <Win10SDKDir Condition=" '$(Win10SDKDir)' == '' ">C:\Program Files (x86)\Windows Kits\10\bin\x64\</Win10SDKDir>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>:: copy all of the files that go into the AppX into a working folder
+mkdir AppX
+xcopy "$(TargetPath)" AppX\ /R /Y
+xcopy "$(TargetPath).config" AppX\ /R /Y
+xcopy "$(TargetDir)Microsoft.HockeyApp.*.dll" AppX\ /R /Y
+xcopy "$(TargetDir)Newtonsoft.Json.dll" AppX\ /R /Y
+xcopy "$(SolutionDir)appxmanifest.xml" AppX\ /R /Y
+xcopy "$(SolutionDir)StoreLogo.png" AppX\ /R /Y
+xcopy "$(SolutionDir)Square44x44Logo.png" AppX\ /R /Y
+xcopy "$(SolutionDir)Square150x150Logo.png" AppX\ /R /Y
+
+:: build a new AppX package
+"$(Win10SDKDir)MakeAppX.exe" pack /d AppX /p "$(TargetName).appx"
+"$(Win10SDKDir)SignTool.exe" sign -f "$(SolutionDir)tempca.pfx" -fd SHA256 -v .\$(TargetName).appx
+:: xcopy "$(TargetName).appx" "$(SolutionDir)" /R /Y
+
+:: install it
+::   powershell add-appxpackage $(TargetName).appx
+</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>:: clean any previous AppX outputs
+rmdir AppX /s /q
+del $(TargetName).appx /q /f
+</PreBuildEvent>
+  </PropertyGroup>
+  <Import Project="..\packages\UwpDesktop.10.0.14393.3\build\portable-net45+uap\UwpDesktop.targets" Condition="Exists('..\packages\UwpDesktop.10.0.14393.3\build\portable-net45+uap\UwpDesktop.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\UwpDesktop.10.0.14393.3\build\portable-net45+uap\UwpDesktop.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\UwpDesktop.10.0.14393.3\build\portable-net45+uap\UwpDesktop.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

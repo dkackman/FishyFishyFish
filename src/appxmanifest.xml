@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package
+   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities">
+  <Identity Name="5f356ed6-b578-4c28-aefb-9d0448a7f5aa"
+    ProcessorArchitecture="x86"
+    Publisher="CN=kackman.net"
+    Version="1.1.18.0" />
+  <Properties>    
+    <DisplayName>Fishy Fishy Fish</DisplayName>
+    <PublisherDisplayName>Reserved</PublisherDisplayName>
+    <Description>Some fish. Swimming around on your screen.</Description>
+    <Logo>StoreLogo.png</Logo>
+  </Properties>
+  <Resources>
+    <Resource Language="en-us" />
+  </Resources>
+  <Dependencies> 
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.14316.0" MaxVersionTested="10.0.14352.0" />
+  </Dependencies>
+  <Capabilities>
+    <Capability Name="internetClient" />
+    <rescap:Capability Name="runFullTrust"/>    
+  </Capabilities>
+  <Applications>
+    <Application Id="FishyFishyFish" Executable="FishyFish.exe" EntryPoint="Windows.FullTrustApplication">      
+      <uap:VisualElements
+         BackgroundColor="transparent"
+         DisplayName="Fishy Fishy Fish"
+         Square150x150Logo="Square150x150Logo.png"
+         Square44x44Logo="Square44x44Logo.png"
+         Description="Some fish. Swimming around on your screen." />
+       
+    </Application>
+  </Applications>
+</Package>
