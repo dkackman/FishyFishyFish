@@ -174,28 +174,27 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>:: copy all of the files that go into the AppX into a working folder
+    <PostBuildEvent>:: create the working folder for packaging
 mkdir AppX
+
+:: copy build output, dependencies, and content into the working folder
 xcopy "$(TargetPath)" AppX\ /R /Y
 xcopy "$(TargetPath).config" AppX\ /R /Y
 xcopy "$(TargetDir)Microsoft.HockeyApp.*.dll" AppX\ /R /Y
-xcopy "$(TargetDir)Newtonsoft.Json.dll" AppX\ /R /Y
 xcopy "$(SolutionDir)appxmanifest.xml" AppX\ /R /Y
-xcopy "$(SolutionDir)StoreLogo.png" AppX\ /R /Y
-xcopy "$(SolutionDir)Square44x44Logo.png" AppX\ /R /Y
-xcopy "$(SolutionDir)Square150x150Logo.png" AppX\ /R /Y
+xcopy "$(SolutionDir)*.png" AppX\ /R /Y
 
-:: build a new AppX package
+:: build and sign the AppX package
 "$(Win10SDKDir)MakeAppX.exe" pack /d AppX /p "$(TargetName).appx"
-"$(Win10SDKDir)SignTool.exe" sign -f "$(SolutionDir)tempca.pfx" -fd SHA256 -v .\$(TargetName).appx
-:: xcopy "$(TargetName).appx" "$(SolutionDir)" /R /Y
+"$(Win10SDKDir)SignTool.exe" sign -f "$(SolutionDir)tempcastore.pfx" -fd SHA256 -p YOUR_PFX_PASSWORD -v .\$(TargetName).appx
 
 :: install it
-::   powershell add-appxpackage $(TargetName).appx
+powershell if ((Get-AppxPackage -Name '3652dkackman.FishyFishyFish').count -gt 0) { Remove-AppxPackage (Get-AppxPackage -Name '3652dkackman.FishyFishyFish').PackageFullName }
+powershell Add-AppxPackage $(TargetName).appx
 </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>:: clean any previous AppX outputs
+    <PreBuildEvent>:: clean any previous package outputs
 rmdir AppX /s /q
 del $(TargetName).appx /q /f
 </PreBuildEvent>

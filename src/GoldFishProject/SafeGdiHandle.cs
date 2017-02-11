@@ -35,6 +35,7 @@ namespace FishTank
                 finally
                 {
                     this.handle = IntPtr.Zero;
+                    this.SetHandleAsInvalid();
                 }
             }
 

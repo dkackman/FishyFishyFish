@@ -7,10 +7,10 @@ namespace FishTank
     sealed class FishAnimation
     {
         private readonly Rectangle _tank;
-        private readonly LoopingEnumerator<Tuple<Bitmap, Bitmap>> _frameEnumerator;
+        private readonly LoopingEnumerator<Tuple<Bitmap, Bitmap>> _frameEnumerator; // the bitmaps for the fish - one set of left and another for right
         private readonly int _width;
 
-        private Counter _animationCounter;
+        private Counter _animationCounter; // the number of ticks to spend at the current veloicty
 
         private SizeF _velocity = new SizeF(2, 0);
         private PointF _location;

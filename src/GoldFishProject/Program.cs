@@ -35,9 +35,13 @@ namespace FishTank
         {
             HockeyClient.Current
                 .Configure("241375ed658746ee8ae1d014a3f52797");
-               // .RegisterDefaultUnobservedTaskExceptionHandler();
+            // .RegisterDefaultUnobservedTaskExceptionHandler();
 
-            HockeyClient.Current.SendCrashesAsync();
+            try
+            {
+                HockeyClient.Current.SendCrashesAsync();
+            }
+            catch { }
 
             using (var program = new Program())
             {

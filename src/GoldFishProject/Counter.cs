@@ -1,12 +1,13 @@
 ﻿namespace FishTank
 { 
-    sealed class Counter
+    struct Counter
     {
         private int _current;
         private readonly int _max;
 
         public Counter(int max)
         {
+            _current = 0;
             _max = max;
         }
 
