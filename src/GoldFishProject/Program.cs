@@ -76,7 +76,7 @@ namespace FishTank
         {
             var animation = new FishAnimation(tank, s_colorFrameList[TheRandom.Next(s_colorFrameList.Count)], WIDTH);
             var f = _fish.Count > 0 ? new FishForm(animation) : new SysTrayFishForm(this, animation);
-            f.Disposed += new EventHandler(f_Disposed);
+            f.Disposed += new EventHandler(FishForm_Disposed);
 
             _fish.Add(f);
         }
@@ -121,11 +121,11 @@ namespace FishTank
             }
         }
 
-        private void f_Disposed(object sender, EventArgs e)
+        private void FishForm_Disposed(object sender, EventArgs e)
         {
             var f = (FishForm)sender;
             _fish.Remove(f);
-            f.Disposed -= new EventHandler(f_Disposed);
+            f.Disposed -= new EventHandler(FishForm_Disposed);
         }
     }
 }
