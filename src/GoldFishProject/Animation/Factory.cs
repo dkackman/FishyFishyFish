@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Reflection;
 using System.Diagnostics;
 
-namespace FishTank
+namespace FishTank.Animation
 {
     static class Factory
     {

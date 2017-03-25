@@ -9,11 +9,29 @@
     <LayoutFile Include="$(MyProjectOutputPath)\FishyFish.exe">
       <PackagePath>$(PackageLayout)\FishyFish.exe</PackagePath>
     </LayoutFile>
+    
+    <!-- HockeyApp -->
     <LayoutFile Include="$(MyProjectOutputPath)\Microsoft.HockeyApp.Core45.dll">
       <PackagePath>$(PackageLayout)\Microsoft.HockeyApp.Core45.dll</PackagePath>
     </LayoutFile>
     <LayoutFile Include="$(MyProjectOutputPath)\Microsoft.HockeyApp.Kit.dll">
       <PackagePath>$(PackageLayout)\Microsoft.HockeyApp.Kit.dll</PackagePath>
+    </LayoutFile>  
+    
+    <!-- Notifications -->
+    <LayoutFile Include="$(MyProjectOutputPath)\Microsoft.Toolkit.Uwp.Notifications.dll">
+      <PackagePath>$(PackageLayout)\Microsoft.Toolkit.Uwp.Notifications.dll</PackagePath>
+    </LayoutFile>
+    <LayoutFile Include="$(MyProjectOutputPath)\QueryString.NETCore.dll">
+      <PackagePath>$(PackageLayout)\QueryString.NETCore.dll</PackagePath>
+    </LayoutFile>
+
+    <!-- DesktopBridge.Helpers -->
+    <LayoutFile Include="$(MyProjectOutputPath)\DesktopBridge.Helpers.dll">
+      <PackagePath>$(PackageLayout)\DesktopBridge.Helpers.dll</PackagePath>
+    </LayoutFile>
+    <LayoutFile Include="$(MyProjectOutputPath)\DesktopBridgeEnvironment.dll">
+      <PackagePath>$(PackageLayout)\DesktopBridgeEnvironment.dll</PackagePath>
     </LayoutFile>    
   </ItemGroup>
 

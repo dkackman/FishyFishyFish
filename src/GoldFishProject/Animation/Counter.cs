@@ -1,4 +1,4 @@
-﻿namespace FishTank
+﻿namespace FishTank.Animation
 { 
     struct Counter
     {

@@ -1,7 +1,6 @@
 ﻿using System.Resources;
 using System;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("FishyFishyFish")]
@@ -17,8 +16,8 @@ using System.Runtime.InteropServices;
 
 [assembly: Guid("BA11D217-59A9-49C5-8CB0-D06920EA8989")]
 
-[assembly: AssemblyVersion("1.1.19.0")]
-[assembly: AssemblyFileVersion("1.1.19.0")]
+[assembly: AssemblyVersion("1.1.20.0")]
+[assembly: AssemblyFileVersion("1.1.20.0")]
 [assembly: CLSCompliant(true)]
 [assembly: NeutralResourcesLanguage("en-US")]
 

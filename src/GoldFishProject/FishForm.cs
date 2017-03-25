@@ -4,6 +4,8 @@ using System.Windows.Forms;
 
 using Microsoft.HockeyApp;
 
+using FishTank.Animation;
+
 namespace FishTank
 {
     partial class FishForm : Form
@@ -29,12 +31,14 @@ namespace FishTank
 
         public FishForm(FishAnimation animation)
         {
-            SetStyle(ControlStyles.Opaque | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.DoubleBuffer, true);
+            SetStyle(ControlStyles.Opaque | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);
             SetStyle(ControlStyles.FixedWidth | ControlStyles.FixedHeight | ControlStyles.UserMouse | ControlStyles.CacheText, true);
 
             InitializeComponent();
 
             _animation = animation;
+            _animation.LocationChanged += Animation_LocationChanged;
+            _animation.VelocityChanged += Animation_VeloctyChanged;
         }
 
         protected override void OnLoad(EventArgs e)
@@ -73,12 +77,12 @@ namespace FishTank
             }
             else
             {
-                _animation.ResetAnimationCounter();
+                _animation.SetNewVelocityDuration();
 
                 _mouseDown = false;
 
-                timerSpeed.Interval = Program.TheRandom.Next(20) + 2;
-                timerSpeed.Enabled = true;
+                timerSpeedMode.Interval = Program.TheRandom.Next(20) + 2;
+                timerSpeedMode.Enabled = true;
             }
 
             base.OnMouseUp(e);
@@ -108,21 +112,20 @@ namespace FishTank
             }
         }
 
-        private void AnimateFish()
+        private void Animation_VeloctyChanged(object sender, EventArgs e)
+        {
+            if (!_mouseDown && timerSpeedMode.Enabled)
+            {
+                timerSpeedMode.Enabled = false;
+            }
+        }
+
+        private void Animation_LocationChanged(object sender, Point e)
         {
             if (!_mouseDown)
             {
-                // don't re-arrange this to set timerSpeed.Enabled unconditionally
-                // even if setting it to its existing value it seems to do a lot based on cpu usage
-                if (_animation.CheckAnimationCounter() && timerSpeed.Enabled)
-                {
-                    timerSpeed.Enabled = false;
-                }
-
-                Location = _animation.Move(Screen.FromControl(this).WorkingArea);
+                Location = e;
             }
-
-            SetBits(_animation.NextFrame());
         }
 
         public void UpdateFish()
@@ -132,15 +135,16 @@ namespace FishTank
                 Show();
             }
 
-            if (!timerSpeed.Enabled)
+            // we are in speedmode - let that timer update the fish
+            if (!timerSpeedMode.Enabled)
             {
-                AnimateFish();
+                SetBits(_animation.Tick(Screen.FromControl(this).WorkingArea));
             }
         }
 
         private void timerSpeed_Tick(object sender, EventArgs e)
         {
-            AnimateFish();
+            SetBits(_animation.Tick(Screen.FromControl(this).WorkingArea));
         }
 
         private void SetBits(Bitmap bitmap)

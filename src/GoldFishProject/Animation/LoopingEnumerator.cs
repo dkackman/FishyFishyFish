@@ -1,16 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace FishTank
+namespace FishTank.Animation
 {
     sealed class LoopingEnumerator<T> : IEnumerator<T>, IEnumerator
     {
         private readonly IEnumerator<T> _innerEnumerator;
         
-        public LoopingEnumerator(IEnumerator<T> innerEnumerator)
-        {
-            _innerEnumerator = innerEnumerator;
-        }
+        public LoopingEnumerator(IEnumerator<T> innerEnumerator) => _innerEnumerator = innerEnumerator;
 
         public T Current => _innerEnumerator.Current;
 

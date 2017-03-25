@@ -12,7 +12,7 @@ namespace FishTank
         /// 必需的设计器变量。
         /// </summary>
         private System.ComponentModel.IContainer components = null;
-        private System.Windows.Forms.Timer timerSpeed;
+        private System.Windows.Forms.Timer timerSpeedMode;
         /// <summary>
         /// 清理所有正在使用的资源。
         /// </summary>
@@ -37,15 +37,15 @@ namespace FishTank
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FishForm));
-            timerSpeed = new System.Windows.Forms.Timer(components);
+            timerSpeedMode = new System.Windows.Forms.Timer(components);
 
             this.SuspendLayout();
 
             //
             // timerSpeed
             //
-            timerSpeed.Enabled = false;
-            timerSpeed.Tick += new System.EventHandler(timerSpeed_Tick);
+            timerSpeedMode.Enabled = false;
+            timerSpeedMode.Tick += new System.EventHandler(timerSpeed_Tick);
 
             // 
             // FishForm

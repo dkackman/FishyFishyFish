@@ -71,6 +71,12 @@
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DesktopBridge.Helpers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DesktopBridge.Helpers.1.0.0\lib\net45\DesktopBridge.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="DesktopBridgeEnvironment, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DesktopBridgeEnvironment.1.0.0-alpha-1\lib\net46\DesktopBridgeEnvironment.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.HockeyApp.Core45, Version=4.1.5.44947, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Microsoft.HockeyApp.Core45.dll</HintPath>
@@ -78,6 +84,12 @@
     <Reference Include="Microsoft.HockeyApp.Kit, Version=4.1.5.44941, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Microsoft.HockeyApp.Kit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Toolkit.Uwp.Notifications, Version=1.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Toolkit.Uwp.Notifications.1.3.1\lib\dotnet\Microsoft.Toolkit.Uwp.Notifications.dll</HintPath>
+    </Reference>
+    <Reference Include="QueryString.NETCore, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QueryString.NET.1.0.0\lib\dotnet\QueryString.NETCore.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
@@ -87,20 +99,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Counter.cs" />
-    <Compile Include="Factory.cs" />
-    <Compile Include="FishAnimation.cs" />
+    <Compile Include="Animation\Counter.cs" />
+    <Compile Include="Animation\Factory.cs" />
+    <Compile Include="Animation\FishAnimation.cs" />
     <Compile Include="FishForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FishForm.Designer.cs">
       <DependentUpon>FishForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LoopingEnumerator.cs" />
+    <Compile Include="Animation\LoopingEnumerator.cs" />
     <Compile Include="SafeGdiHandle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UwpExtensions.cs" />
+    <Compile Include="Uwp\SimpleNotification.cs" />
+    <Compile Include="Uwp\UwpExtensions.cs" />
     <EmbeddedResource Include="FishForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>FishForm.cs</DependentUpon>
@@ -126,7 +139,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Settings.cs" />
+    <Compile Include="Properties\Settings.cs" />
     <Compile Include="SysTrayFishForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,14 +196,18 @@ xcopy "$(TargetPath).config" AppX\ /R /Y
 xcopy "$(TargetDir)Microsoft.HockeyApp.*.dll" AppX\ /R /Y
 xcopy "$(SolutionDir)appxmanifest.xml" AppX\ /R /Y
 xcopy "$(SolutionDir)*.png" AppX\ /R /Y
+xcopy "$(TargetDir)Microsoft.Toolkit.Uwp.Notifications.dll" AppX\ /R /Y
+xcopy "$(TargetDir)QueryString.NETCore.dll" AppX\ /R /Y
+xcopy "$(TargetDir)DesktopBridge.Helpers.dll" AppX\ /R /Y
+xcopy "$(TargetDir)DesktopBridgeEnvironment.dll" AppX\ /R /Y
 
 :: build and sign the AppX package
 "$(Win10SDKDir)MakeAppX.exe" pack /d AppX /p "$(TargetName).appx"
-"$(Win10SDKDir)SignTool.exe" sign -f "$(SolutionDir)tempcastore.pfx" -fd SHA256 -p YOUR_PFX_PASSWORD -v .\$(TargetName).appx
+:: "$(Win10SDKDir)SignTool.exe" sign -f "$(SolutionDir)tempcastore.pfx" -fd SHA256 -p PWD -v .\$(TargetName).appx
 
 :: install it
-powershell if ((Get-AppxPackage -Name '3652dkackman.FishyFishyFish').count -gt 0) { Remove-AppxPackage (Get-AppxPackage -Name '3652dkackman.FishyFishyFish').PackageFullName }
-powershell Add-AppxPackage $(TargetName).appx
+:: powershell if ((Get-AppxPackage -Name '3652dkackman.FishyFishyFish').count -gt 0) { Remove-AppxPackage (Get-AppxPackage -Name '3652dkackman.FishyFishyFish').PackageFullName }
+:: powershell Add-AppxPackage $(TargetName).appx
 </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>

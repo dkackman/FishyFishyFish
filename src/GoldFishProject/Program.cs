@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 
 using FishTank.Properties;
+using DesktopBridgeEnvironment;
 
 using Microsoft.HockeyApp;
+
+using FishTank.Animation;
 
 namespace FishTank
 {
@@ -17,36 +20,42 @@ namespace FishTank
         private readonly Timer _timer = new Timer();
         private readonly List<FishForm> _fish = new List<FishForm>();
 
-        private static readonly IList<IEnumerable<Tuple<Bitmap, Bitmap>>> s_colorFrameList;
+        private readonly IList<IEnumerable<Tuple<Bitmap, Bitmap>>> _colorFrameList;
 
         public readonly static Random TheRandom = new Random(unchecked((int)(DateTime.Now.Ticks)));
-
-        static Program()
-        {
-            s_colorFrameList = (from color in new string[] { "Blue", "Green", "Orange", "Pink", "Yellow", "Red" }
-                                select Factory.GetFrames(color, WIDTH)).ToList();
-        }
 
         /// <summary>
         /// Main Entry
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string [] args)
         {
-            HockeyClient.Current
-                .Configure("241375ed658746ee8ae1d014a3f52797");
-            // .RegisterDefaultUnobservedTaskExceptionHandler();
-
-            try
+            using (var instance = new SingleInstance(ExecutionEnvironment.Current.AppId))
             {
-                HockeyClient.Current.SendCrashesAsync();
-            }
-            catch { }
+                if (instance.IsFirstInstance)
+                {
+                    ExecutionEnvironment.Current.StartupArgs = args;
 
-            using (var program = new Program())
-            {
-                program.Show();
+                    HockeyClient.Current.Configure("241375ed658746ee8ae1d014a3f52797");
+
+                    try
+                    {
+                        HockeyClient.Current.SendCrashesAsync();
+                    }
+                    catch { }
+
+                    using (var program = new Program())
+                    {
+                        program.Show();
+                    }
+                }
             }
+        }
+
+        private Program()
+        {
+            _colorFrameList = (from color in new string[] { "Blue", "Green", "Orange", "Pink", "Yellow", "Red" }
+                                select Factory.GetFrames(color, WIDTH)).ToList();
         }
 
         public void Dispose()
@@ -74,7 +83,7 @@ namespace FishTank
 
         private void CreateAndAddFish(Rectangle tank)
         {
-            var animation = new FishAnimation(tank, s_colorFrameList[TheRandom.Next(s_colorFrameList.Count)], WIDTH);
+            var animation = new FishAnimation(tank, _colorFrameList[TheRandom.Next(_colorFrameList.Count)], WIDTH);
             var f = _fish.Count > 0 ? new FishForm(animation) : new SysTrayFishForm(this, animation);
             f.Disposed += new EventHandler(FishForm_Disposed);
 
