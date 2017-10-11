@@ -2,7 +2,6 @@
 <Package
    xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
    xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
-   xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"   
    xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities">
   <Identity Name="3652dkackman.FishyFishyFish"
     ProcessorArchitecture="x86"
@@ -18,7 +17,7 @@
     <Resource Language="en-us" />
   </Resources>
   <Dependencies> 
-    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.14316.0" MaxVersionTested="10.0.14352.0" />
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.14316.0" MaxVersionTested="10.0.15063.0" />
   </Dependencies>
   <Capabilities>
     <Capability Name="internetClient" />
@@ -32,11 +31,11 @@
          Square150x150Logo="Square150x150Logo.png"
          Square44x44Logo="Square44x44Logo.png"
          Description="Some fish. Swimming around on your screen." />
-      <Extensions>
+      <!--<Extensions>
         <uap3:Extension Category="windows.protocol">
           <uap3:Protocol Name="fishyfish" />
         </uap3:Extension>
-      </Extensions>
+      </Extensions>-->
     </Application>
   </Applications>
 </Package>

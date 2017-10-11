@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 namespace FishTank.Animation
 {
-    sealed class FishAnimation
+    sealed class FishAnimation : IDisposable
     {
         private readonly Rectangle _tank;
         private readonly LoopingEnumerator<Tuple<Bitmap, Bitmap>> _frameEnumerator; // the bitmaps for the fish - one set of left and another for right
         private readonly int _width;
 
-        private Counter _ticksAtCurrentVelocity; // the number of ticks to spend at the current veloicty
+        private Counter _ticksAtCurrentVelocity; // the number of ticks to spend at the current velocity
 
         private SizeF _velocity = new SizeF(2, 0);
         private PointF _location;
@@ -51,12 +51,12 @@ namespace FishTank.Animation
             }
 
             // if we are off screen to the left or right (and not already heading back) turn around
-            if ((_velocity.Width > 0 && _location.X > _tank.Right) 
+            if ((_velocity.Width > 0 && _location.X > _tank.Right)
                 || (_velocity.Width < 0 && _location.X < _tank.Left - _width)
                 || (Program.TheRandom.Next(_tank.Width) == 1)) // random chance to turn around spontaneously
             {
                 SwitchDirections();
-            }           
+            }
             else if (_ticksAtCurrentVelocity.Next() == 0) // once the animation counter runs down, pick a new random velocity
             {
                 float dx = ((float)Program.TheRandom.NextDouble() * 3f + 0.5f) * Math.Sign(_velocity.Width);
@@ -84,6 +84,11 @@ namespace FishTank.Animation
         {
             _ticksAtCurrentVelocity = new Counter(Program.TheRandom.Next(70) + 40);
             VelocityChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void Dispose()
+        {
+            _frameEnumerator.Dispose();
         }
     }
 }

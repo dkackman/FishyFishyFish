@@ -13,19 +13,6 @@ namespace FishTank
         /// </summary>
         private System.ComponentModel.IContainer components = null;
         private System.Windows.Forms.Timer timerSpeedMode;
-        /// <summary>
-        /// 清理所有正在使用的资源。
-        /// </summary>
-        /// <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                if (components != null)
-                    components.Dispose();   
-            }
-            base.Dispose(disposing);
-        }
 
         #region Windows 窗体设计器生成的代码
 
@@ -51,7 +38,7 @@ namespace FishTank
             // FishForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.CausesValidation = false;
             this.ClientSize = new System.Drawing.Size(211, 122);

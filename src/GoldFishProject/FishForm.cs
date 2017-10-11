@@ -135,7 +135,7 @@ namespace FishTank
                 Show();
             }
 
-            // we are in speedmode - let that timer update the fish
+            // if we are in speedmode - let that timer update the fish
             if (!timerSpeedMode.Enabled)
             {
                 SetBits(_animation.Tick(Screen.FromControl(this).WorkingArea));
@@ -157,9 +157,26 @@ namespace FishTank
                 Point topLoc = Location;
                 Point srcLoc = Point.Empty;
                 Size bitMapSize = bitmap.Size;
-                
+
                 NativeMethods.UpdateLayeredWindow(Handle, hWindowDC, ref topLoc, ref bitMapSize, hDC, ref srcLoc, 0, ref s_blendFunc, NativeMethods.ULW_ALPHA);
             }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (components != null)
+                {
+                    components.Dispose();
+                }
+
+                if (_animation != null)
+                {
+                    _animation.Dispose();
+                }
+            }
+            base.Dispose(disposing);
         }
     }
 }
