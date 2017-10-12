@@ -15,7 +15,9 @@ namespace FishTank
 {
     sealed class Program : IDisposable
     {
-        private const int WIDTH = 143;
+        // (change these if you change the bitmap)
+        private const int WIDTH = 143; // the width of a single frame in the bitmap strip
+        private const int HEIGHT = 84; // the height of the bitmap strip 
 
         private readonly Timer _timer = new Timer();
         private readonly List<FishForm> _fish = new List<FishForm>();
@@ -83,7 +85,7 @@ namespace FishTank
 
         private void CreateAndAddFish(Rectangle tank)
         {
-            var animation = new FishAnimation(tank, _colorFrameList[TheRandom.Next(_colorFrameList.Count)], WIDTH);
+            var animation = new FishAnimation(tank, _colorFrameList[TheRandom.Next(_colorFrameList.Count)], WIDTH, HEIGHT);
             var f = _fish.Count > 0 ? new FishForm(animation) : new SysTrayFishForm(this, animation);
             f.Disposed += new EventHandler(FishForm_Disposed);
 

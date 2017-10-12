@@ -8,23 +8,30 @@ namespace FishTank.Animation
     {
         private readonly Rectangle _tank;
         private readonly LoopingEnumerator<Tuple<Bitmap, Bitmap>> _frameEnumerator; // the bitmaps for the fish - one set of left and another for right
-        private readonly int _width;
 
         private Counter _ticksAtCurrentVelocity; // the number of ticks to spend at the current velocity
 
         private SizeF _velocity = new SizeF(2, 0);
         private PointF _location;
+        private readonly Size _scaledSize;
 
-        public FishAnimation(Rectangle tank, IEnumerable<Tuple<Bitmap, Bitmap>> frames, int width)
+        private const double SCALE_MAX = 1.2;
+        private const double SCALE_MIN = 0.7;
+
+        public FishAnimation(Rectangle tank, IEnumerable<Tuple<Bitmap, Bitmap>> frames, int width, int height)
         {
             _tank = tank;
             _frameEnumerator = new LoopingEnumerator<Tuple<Bitmap, Bitmap>>(frames.GetEnumerator());
-            _width = width;
 
-            _location = new PointF(_tank.Left - _width, _tank.Height * (float)Program.TheRandom.NextDouble());
+            double scaleFactor = Program.TheRandom.NextDouble() * (SCALE_MAX - SCALE_MIN) + SCALE_MIN;
+            _scaledSize = new Size((int)Math.Round(width * scaleFactor), (int)Math.Round(height * scaleFactor));
+
+            _location = new PointF(_tank.Left - width, _tank.Height * (float)Program.TheRandom.NextDouble());
 
             SetNewVelocityDuration();
         }
+
+        public Size ScaleSize { get; private set; }
 
         public void MoveTo(Point point)
         {
@@ -52,7 +59,7 @@ namespace FishTank.Animation
 
             // if we are off screen to the left or right (and not already heading back) turn around
             if ((_velocity.Width > 0 && _location.X > _tank.Right)
-                || (_velocity.Width < 0 && _location.X < _tank.Left - _width)
+                || (_velocity.Width < 0 && _location.X < _tank.Left - _scaledSize.Width)
                 || (Program.TheRandom.Next(_tank.Width) == 1)) // random chance to turn around spontaneously
             {
                 SwitchDirections();
@@ -71,7 +78,8 @@ namespace FishTank.Animation
             // get the next frame and return the correct bitmap (based on direction the fish is swimming)
             _frameEnumerator.MoveNext();
 
-            return _velocity.Width > 0 ? _frameEnumerator.Current.Item2 : _frameEnumerator.Current.Item1;
+            var bmp = _velocity.Width > 0 ? _frameEnumerator.Current.Item2 : _frameEnumerator.Current.Item1;
+            return new Bitmap(bmp, _scaledSize);
         }
 
         public void SwitchDirections()
