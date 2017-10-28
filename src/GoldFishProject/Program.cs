@@ -82,10 +82,28 @@ namespace FishTank
 
             Application.Run(_fish[0]);
         }
+        private const double SCALE_MAX = 1.2;
+        private const double SCALE_MIN = 0.7;
 
         private void CreateAndAddFish(Rectangle tank)
         {
-            var animation = new FishAnimation(tank, _colorFrameList[TheRandom.Next(_colorFrameList.Count)], WIDTH, HEIGHT);
+            // here we pick a random scale and create new fish bitmaps at that scale 
+            double scaleFactor = TheRandom.NextDouble() * (SCALE_MAX - SCALE_MIN) + SCALE_MIN;
+            var scaledSize = new Size((int)Math.Round(WIDTH * scaleFactor), (int)Math.Round(HEIGHT * scaleFactor));
+
+            var frames = _colorFrameList[TheRandom.Next(_colorFrameList.Count)];
+            var scaledFrames = new List<Tuple<Bitmap, Bitmap>>();
+
+            foreach (var tuple in frames)
+            {
+                var left = new Bitmap(tuple.Item1, scaledSize);
+                var right = new Bitmap(tuple.Item2, scaledSize);
+                scaledFrames.Add(Tuple.Create(left, right));
+            }
+
+            // owenrship of the scaled bitmaps is passed to the animation
+            // this trades memory consumption for cpu usage as we could also scale during the animation loop
+            var animation = new FishAnimation(tank, scaledFrames, scaledSize);
             var f = _fish.Count > 0 ? new FishForm(animation) : new SysTrayFishForm(this, animation);
             f.Disposed += new EventHandler(FishForm_Disposed);
 
