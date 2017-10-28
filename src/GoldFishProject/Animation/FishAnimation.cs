@@ -90,12 +90,13 @@ namespace FishTank.Animation
 
         public void Dispose()
         {
+            _frameEnumerator.Dispose();
+
             foreach (var tuple in _frames)
             {
                 tuple.Item1.Dispose();
                 tuple.Item2.Dispose();
             }
-            _frameEnumerator.Dispose();
         }
     }
 }

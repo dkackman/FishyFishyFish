@@ -82,8 +82,8 @@ namespace FishTank
 
             Application.Run(_fish[0]);
         }
-        private const double SCALE_MAX = 1.2;
-        private const double SCALE_MIN = 0.7;
+        private const double SCALE_MAX = 1.25;
+        private const double SCALE_MIN = 0.75;
 
         private void CreateAndAddFish(Rectangle tank)
         {
