@@ -1,23 +1,83 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26206.0
+VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoldFishProject", "GoldFishProject\GoldFishProject.csproj", "{064EAFA0-C82D-42BF-9E83-8FACB5510745}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{345846AF-6235-4593-AC8E-F66A1FDA4DB2}"
 	ProjectSection(SolutionItems) = preProject
-		appxmanifest.xml = appxmanifest.xml
-		BaseLogo.png = BaseLogo.png
-		Square150x150Logo.png = Square150x150Logo.png
-		Square44x44Logo.png = Square44x44Logo.png
-		StoreLogo.png = StoreLogo.png
 		tempca.pfx = tempca.pfx
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FishyAppXDeploy", "FishyAppXDeploy\FishyAppXDeploy.vsdproj", "{DA7CA3D8-2668-413C-A2A0-476A6239F06B}"
 	ProjectSection(ProjectDependencies) = postProject
 		{064EAFA0-C82D-42BF-9E83-8FACB5510745} = {064EAFA0-C82D-42BF-9E83-8FACB5510745}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Packaging", "Packaging", "{609DFB8D-8FE5-40BA-BAF9-87ECA9BB706E}"
+	ProjectSection(SolutionItems) = preProject
+		Packaging\appxmanifest.xml = Packaging\appxmanifest.xml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{B8019146-4F80-4675-9350-5D2EAD928A16}"
+	ProjectSection(SolutionItems) = preProject
+		Packaging\Assets\LargeTile.png = Packaging\Assets\LargeTile.png
+		Packaging\Assets\LargeTile.scale-100.png = Packaging\Assets\LargeTile.scale-100.png
+		Packaging\Assets\LargeTile.scale-125.png = Packaging\Assets\LargeTile.scale-125.png
+		Packaging\Assets\LargeTile.scale-150.png = Packaging\Assets\LargeTile.scale-150.png
+		Packaging\Assets\LargeTile.scale-200.png = Packaging\Assets\LargeTile.scale-200.png
+		Packaging\Assets\LargeTile.scale-400.png = Packaging\Assets\LargeTile.scale-400.png
+		Packaging\Assets\LockScreenLogo.scale-200.png = Packaging\Assets\LockScreenLogo.scale-200.png
+		Packaging\Assets\screenshot.png = Packaging\Assets\screenshot.png
+		Packaging\Assets\SmallTile.png = Packaging\Assets\SmallTile.png
+		Packaging\Assets\SmallTile.scale-100.png = Packaging\Assets\SmallTile.scale-100.png
+		Packaging\Assets\SmallTile.scale-125.png = Packaging\Assets\SmallTile.scale-125.png
+		Packaging\Assets\SmallTile.scale-150.png = Packaging\Assets\SmallTile.scale-150.png
+		Packaging\Assets\SmallTile.scale-200.png = Packaging\Assets\SmallTile.scale-200.png
+		Packaging\Assets\SmallTile.scale-400.png = Packaging\Assets\SmallTile.scale-400.png
+		Packaging\Assets\SplashScreen.png = Packaging\Assets\SplashScreen.png
+		Packaging\Assets\SplashScreen.scale-100.png = Packaging\Assets\SplashScreen.scale-100.png
+		Packaging\Assets\SplashScreen.scale-125.png = Packaging\Assets\SplashScreen.scale-125.png
+		Packaging\Assets\SplashScreen.scale-150.png = Packaging\Assets\SplashScreen.scale-150.png
+		Packaging\Assets\SplashScreen.scale-200.png = Packaging\Assets\SplashScreen.scale-200.png
+		Packaging\Assets\SplashScreen.scale-400.png = Packaging\Assets\SplashScreen.scale-400.png
+		Packaging\Assets\Square150x150Logo.png = Packaging\Assets\Square150x150Logo.png
+		Packaging\Assets\Square150x150Logo.scale-100.png = Packaging\Assets\Square150x150Logo.scale-100.png
+		Packaging\Assets\Square150x150Logo.scale-125.png = Packaging\Assets\Square150x150Logo.scale-125.png
+		Packaging\Assets\Square150x150Logo.scale-150.png = Packaging\Assets\Square150x150Logo.scale-150.png
+		Packaging\Assets\Square150x150Logo.scale-200.png = Packaging\Assets\Square150x150Logo.scale-200.png
+		Packaging\Assets\Square150x150Logo.scale-400.png = Packaging\Assets\Square150x150Logo.scale-400.png
+		Packaging\Assets\Square44x44Logo.altform-unplated_targetsize-16.png = Packaging\Assets\Square44x44Logo.altform-unplated_targetsize-16.png
+		Packaging\Assets\Square44x44Logo.altform-unplated_targetsize-256.png = Packaging\Assets\Square44x44Logo.altform-unplated_targetsize-256.png
+		Packaging\Assets\Square44x44Logo.altform-unplated_targetsize-32.png = Packaging\Assets\Square44x44Logo.altform-unplated_targetsize-32.png
+		Packaging\Assets\Square44x44Logo.altform-unplated_targetsize-48.png = Packaging\Assets\Square44x44Logo.altform-unplated_targetsize-48.png
+		Packaging\Assets\Square44x44Logo.png = Packaging\Assets\Square44x44Logo.png
+		Packaging\Assets\Square44x44Logo.scale-100.png = Packaging\Assets\Square44x44Logo.scale-100.png
+		Packaging\Assets\Square44x44Logo.scale-125.png = Packaging\Assets\Square44x44Logo.scale-125.png
+		Packaging\Assets\Square44x44Logo.scale-150.png = Packaging\Assets\Square44x44Logo.scale-150.png
+		Packaging\Assets\Square44x44Logo.scale-200.png = Packaging\Assets\Square44x44Logo.scale-200.png
+		Packaging\Assets\Square44x44Logo.scale-400.png = Packaging\Assets\Square44x44Logo.scale-400.png
+		Packaging\Assets\Square44x44Logo.targetsize-16.png = Packaging\Assets\Square44x44Logo.targetsize-16.png
+		Packaging\Assets\Square44x44Logo.targetsize-24.png = Packaging\Assets\Square44x44Logo.targetsize-24.png
+		Packaging\Assets\Square44x44Logo.targetsize-24_altform-unplated.png = Packaging\Assets\Square44x44Logo.targetsize-24_altform-unplated.png
+		Packaging\Assets\Square44x44Logo.targetsize-256.png = Packaging\Assets\Square44x44Logo.targetsize-256.png
+		Packaging\Assets\Square44x44Logo.targetsize-32.png = Packaging\Assets\Square44x44Logo.targetsize-32.png
+		Packaging\Assets\Square44x44Logo.targetsize-48.png = Packaging\Assets\Square44x44Logo.targetsize-48.png
+		Packaging\Assets\StoreLogo.backup.png = Packaging\Assets\StoreLogo.backup.png
+		Packaging\Assets\StoreLogo.png = Packaging\Assets\StoreLogo.png
+		Packaging\Assets\StoreLogo.scale-100.png = Packaging\Assets\StoreLogo.scale-100.png
+		Packaging\Assets\StoreLogo.scale-125.png = Packaging\Assets\StoreLogo.scale-125.png
+		Packaging\Assets\StoreLogo.scale-150.png = Packaging\Assets\StoreLogo.scale-150.png
+		Packaging\Assets\StoreLogo.scale-200.png = Packaging\Assets\StoreLogo.scale-200.png
+		Packaging\Assets\StoreLogo.scale-400.png = Packaging\Assets\StoreLogo.scale-400.png
+		Packaging\Assets\systray-screenshot.png = Packaging\Assets\systray-screenshot.png
+		Packaging\Assets\Wide310x150Logo.png = Packaging\Assets\Wide310x150Logo.png
+		Packaging\Assets\Wide310x150Logo.scale-100.png = Packaging\Assets\Wide310x150Logo.scale-100.png
+		Packaging\Assets\Wide310x150Logo.scale-125.png = Packaging\Assets\Wide310x150Logo.scale-125.png
+		Packaging\Assets\Wide310x150Logo.scale-150.png = Packaging\Assets\Wide310x150Logo.scale-150.png
+		Packaging\Assets\Wide310x150Logo.scale-200.png = Packaging\Assets\Wide310x150Logo.scale-200.png
+		Packaging\Assets\Wide310x150Logo.scale-400.png = Packaging\Assets\Wide310x150Logo.scale-400.png
 	EndProjectSection
 EndProject
 Global
@@ -75,5 +135,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B8019146-4F80-4675-9350-5D2EAD928A16} = {609DFB8D-8FE5-40BA-BAF9-87ECA9BB706E}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DB25770F-4353-46B2-86D1-738E122F3025}
 	EndGlobalSection
 EndGlobal
