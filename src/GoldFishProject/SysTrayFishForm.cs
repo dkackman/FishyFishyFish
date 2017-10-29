@@ -70,6 +70,8 @@ namespace FishTank
                 var args = QueryString.Parse(arguments);
                 if (args.TryGetValue("action", out string action) && action == "showme")
                 {
+                    HockeyClient.Current.TrackEvent("ToastShowMe");
+
                     MethodInfo mi = typeof(NotifyIcon).GetMethod("ShowContextMenu", BindingFlags.Instance | BindingFlags.NonPublic);
                     mi.Invoke(notifyIcon1, null);
                 }

@@ -22,7 +22,9 @@
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <TargetPlatformVersion>10.0</TargetPlatformVersion>
-    <HockeyAppResourceId>c498618cc50b4f35ae8513b4698ae097</HockeyAppResourceId>
+    <HockeyAppResourceId>241375ed658746ee8ae1d014a3f52797</HockeyAppResourceId>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -37,8 +39,6 @@
     <ApplicationVersion>1.0.1.9</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>false</BootstrapperEnabled>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
