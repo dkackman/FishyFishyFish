@@ -7,6 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoldFishProject", "GoldFish
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{345846AF-6235-4593-AC8E-F66A1FDA4DB2}"
 	ProjectSection(SolutionItems) = preProject
+		Package.cmd = Package.cmd
 		tempca.pfx = tempca.pfx
 	EndProjectSection
 EndProject

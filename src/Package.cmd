@@ -1,10 +1,9 @@
 @echo off
 
 SET SolutionDir=%~dp0
-
-SET TargetName=FishyFish
 SET ConfigurationName=Release
 
+SET TargetName=FishyFish
 SET TargetDir=%SolutionDir%GoldFishProject\bin\%ConfigurationName%\
 SET TargetPath=%TargetDir%%TargetName%.exe
 
@@ -26,15 +25,17 @@ mkdir "%AppXPackageDir%Assets\"
 xcopy "%TargetPath%" "%AppXPackageDir%" /R /Y
 xcopy "%TargetPath%.config" "%AppXPackageDir%" /R /Y
 xcopy "%TargetDir%Microsoft.HockeyApp.*.dll" "%AppXPackageDir%" /R /Y
-xcopy "%SolutionDir%Packaging\appxmanifest.xml" "%AppXPackageDir%" /R /Y
-xcopy "%SolutionDir%Packaging\Assets\*.png" "%AppXPackageDir%Assets\" /R /Y
 xcopy "%TargetDir%Microsoft.Toolkit.Uwp.Notifications.dll" "%AppXPackageDir%" /R /Y
 xcopy "%TargetDir%QueryString.NETCore.dll" "%AppXPackageDir%" /R /Y
 xcopy "%TargetDir%DesktopBridge.Helpers.dll" "%AppXPackageDir%" /R /Y
 xcopy "%TargetDir%DesktopBridgeEnvironment.dll" "%AppXPackageDir%" /R /Y
 
+:: copy appmanifest and assets into the working folder
+xcopy "%SolutionDir%Packaging\appxmanifest.xml" "%AppXPackageDir%" /R /Y
+xcopy "%SolutionDir%Packaging\Assets\*.*" "%AppXPackageDir%Assets\" /R /Y
+
 :: build the AppX package
-"%Win10SDKDir%MakeAppX.exe" pack /d %AppXPackageDir% /p ""%AppXPath%""
+"%Win10SDKDir%MakeAppX.exe" pack /d %AppXPackageDir% /p "%AppXPath%"
 
 :: sign the package if the password was passed in as first argument
 if "%~1"=="" goto end
