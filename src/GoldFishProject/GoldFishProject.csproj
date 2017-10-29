@@ -190,35 +190,11 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>:: create the working folder for packaging
-mkdir "$(SolutionDir)AppX\"
-mkdir "$(SolutionDir)AppX\Assets\"
-
-:: copy build output, dependencies, and content into the working folder
-xcopy "$(TargetPath)" "$(SolutionDir)AppX\" /R /Y
-xcopy "$(TargetPath).config" "$(SolutionDir)AppX\" /R /Y
-xcopy "$(TargetDir)Microsoft.HockeyApp.*.dll" "$(SolutionDir)AppX\" /R /Y
-xcopy "$(SolutionDir)Packaging\appxmanifest.xml" "$(SolutionDir)AppX\" /R /Y
-xcopy "$(SolutionDir)Packaging\Assets\*.png" "$(SolutionDir)AppX\Assets\" /R /Y
-xcopy "$(TargetDir)Microsoft.Toolkit.Uwp.Notifications.dll" "$(SolutionDir)AppX\" /R /Y
-xcopy "$(TargetDir)QueryString.NETCore.dll" "$(SolutionDir)AppX\" /R /Y
-xcopy "$(TargetDir)DesktopBridge.Helpers.dll" "$(SolutionDir)AppX\" /R /Y
-xcopy "$(TargetDir)DesktopBridgeEnvironment.dll" "$(SolutionDir)AppX\" /R /Y
-
-:: build and sign the AppX package
-"$(Win10SDKDir)MakeAppX.exe" pack /d $(SolutionDir)AppX /p "$(SolutionDir)$(TargetName).appx"
-:: "$(Win10SDKDir)SignTool.exe" sign -f "$(SolutionDir)tempcastore.pfx" -fd SHA256 -p PWD -v .\$(TargetName).appx
-
-:: install it
-:: powershell if ((Get-AppxPackage -Name '3652dkackman.FishyFishyFish').count -gt 0) { Remove-AppxPackage (Get-AppxPackage -Name '3652dkackman.FishyFishyFish').PackageFullName }
-:: powershell Add-AppxPackage $(TargetName).appx
-</PostBuildEvent>
+    <PostBuildEvent>if $(ConfigurationName) == Release $(SolutionDir)package.cmd</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>:: clean any previous package outputs
-rmdir "$(SolutionDir)AppX\Assets" /s /q
-rmdir "$(SolutionDir)AppX" /s /q
-del "$(SolutionDir)$(TargetName).appx" /q /f</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <Import Project="..\packages\UwpDesktop.10.0.14393.3\build\portable-net45+uap\UwpDesktop.targets" Condition="Exists('..\packages\UwpDesktop.10.0.14393.3\build\portable-net45+uap\UwpDesktop.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
