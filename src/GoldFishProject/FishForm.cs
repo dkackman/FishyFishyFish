@@ -156,9 +156,9 @@ namespace FishTank
             {
                 Point topLoc = Location;
                 Point srcLoc = Point.Empty;
-                Size bitMapSize = bitmap.Size;
+                Size bitmapSize = bitmap.Size;
 
-                NativeMethods.UpdateLayeredWindow(Handle, hWindowDC, ref topLoc, ref bitMapSize, hDC, ref srcLoc, 0, ref s_blendFunc, NativeMethods.ULW_ALPHA);
+                NativeMethods.UpdateLayeredWindow(Handle, hWindowDC, ref topLoc, ref bitmapSize, hDC, ref srcLoc, 0, ref s_blendFunc, NativeMethods.ULW_ALPHA);
             }
         }
 
