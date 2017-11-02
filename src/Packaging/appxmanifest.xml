@@ -6,7 +6,7 @@
   <Identity Name="3652dkackman.FishyFishyFish"
     ProcessorArchitecture="x86"
     Publisher="CN=D84FAA85-E110-4951-93B4-A797B4808678"
-    Version="1.1.22.0" />
+    Version="1.1.23.0" />
   <Properties>    
     <DisplayName>Fishy Fishy Fish</DisplayName>
     <PublisherDisplayName>dkackman</PublisherDisplayName>
