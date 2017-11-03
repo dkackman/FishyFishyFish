@@ -38,7 +38,7 @@ namespace FishTank
                 {
                     ExecutionEnvironment.Current.StartupArgs = args;
 
-                    HockeyClient.Current.Configure("241375ed658746ee8ae1d014a3f52797");
+                    HockeyClient.Current.Configure("241375ed658746ee8ae1d014a3f52797", ExecutionEnvironment.Current.AppId, ExecutionEnvironment.Current.Version);
 
                     try
                     {
