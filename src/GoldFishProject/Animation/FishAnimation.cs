@@ -7,14 +7,14 @@ namespace FishTank.Animation
     sealed class FishAnimation : IDisposable
     {
         private readonly Rectangle _tank;
+        private readonly Size _size;
         private readonly IEnumerable<Tuple<Bitmap, Bitmap>> _frames; // this is owned so must be disposed
         private readonly LoopingEnumerator<Tuple<Bitmap, Bitmap>> _frameEnumerator; // the bitmaps for the fish - one set of left and another for right
 
         private Counter _ticksAtCurrentVelocity; // the number of ticks to spend at the current velocity
 
-        private SizeF _velocity = new SizeF(2, 0);
         private PointF _location;
-        private readonly Size _size;
+        private SizeF _velocity = new SizeF(2, 0);
 
         public FishAnimation(Rectangle tank, IEnumerable<Tuple<Bitmap, Bitmap>> frames, Size size)
         {
@@ -28,10 +28,7 @@ namespace FishTank.Animation
             SetNewVelocityDuration();
         }
 
-        public void MoveTo(Point point)
-        {
-            _location = new PointF(point.X, point.Y);
-        }
+        public void MoveTo(Point point) => _location = new PointF(point.X, point.Y);
 
         public event EventHandler<Point> LocationChanged;
 

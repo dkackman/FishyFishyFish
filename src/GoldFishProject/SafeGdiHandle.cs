@@ -15,10 +15,7 @@ namespace FishTank
             _release = release;
         }
 
-        public static implicit operator IntPtr(SafeGdiHandle h)
-        {
-            return h != null && !h.IsInvalid ? h.handle : IntPtr.Zero;
-        }
+        public static implicit operator IntPtr(SafeGdiHandle h) => h != null && !h.IsInvalid ? h.handle : IntPtr.Zero;
 
         protected override bool ReleaseHandle()
         {

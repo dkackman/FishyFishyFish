@@ -30,7 +30,7 @@ namespace FishTank
         /// Main Entry
         /// </summary>
         [STAThread]
-        static void Main(string [] args)
+        static void Main(string[] args)
         {
             using (var instance = new SingleInstance(ExecutionEnvironment.Current.AppId))
             {
@@ -57,13 +57,10 @@ namespace FishTank
         private Program()
         {
             _colorFrameList = (from color in new string[] { "Blue", "Green", "Orange", "Pink", "Yellow", "Red" }
-                                select Factory.GetFrames(color, WIDTH)).ToList();
+                               select Factory.GetFrames(color, WIDTH)).ToList();
         }
 
-        public void Dispose()
-        {
-            _timer.Dispose();
-        }
+        public void Dispose() => _timer.Dispose();
 
         private void Show()
         {

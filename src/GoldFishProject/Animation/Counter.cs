@@ -1,5 +1,5 @@
 ﻿namespace FishTank.Animation
-{ 
+{
     struct Counter
     {
         private int _current;
@@ -11,14 +11,8 @@
             _max = max;
         }
 
-        public int Next()
-        {
-            return ++_current >= _max ? _current = 0 : _current;
-        }
+        public int Next() => ++_current >= _max ? _current = 0 : _current;
 
-        public static implicit operator int(Counter counter)
-        {
-            return counter._current;
-        }
+        public static implicit operator int(Counter counter) => counter._current;
     }
 }
