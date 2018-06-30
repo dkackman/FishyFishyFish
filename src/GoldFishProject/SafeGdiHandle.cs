@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 using Microsoft.Win32.SafeHandles;
 
@@ -11,6 +12,8 @@ namespace FishTank
         public SafeGdiHandle(IntPtr hObject, Func<IntPtr, int> release)
             : base(true)
         {
+            Debug.Assert(release != null);
+
             SetHandle(hObject);
             _release = release;
         }
